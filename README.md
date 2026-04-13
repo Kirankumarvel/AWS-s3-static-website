@@ -1,138 +1,215 @@
-# AWS S3 Static Website — Cloud Infrastructure Project
+# 🌐 AWS S3 Static Website Hosting Project
 
-This project demonstrates how to host a production-style static website on AWS using **Amazon S3**, **CloudFront**, **Route 53**, **IAM**, and a **CORS-aware configuration**. It’s designed to be portfolio-ready and focused on secure static hosting, CDN delivery, custom-domain routing, and cost-conscious operations aligned with AWS best practices.
-
----
-
-## Tech Stack
-
-- **Amazon S3** (static website hosting / object storage)
-- **AWS CloudFront** (CDN, HTTPS, edge caching)
-- **Amazon Route 53** (DNS + alias routing)
-- **AWS IAM** (least-privilege access)
-- **CORS** (cross-origin configuration for browser-based apps)
+A portfolio-ready static website hosted on **Amazon S3** that demonstrates core cloud fundamentals: **static website hosting**, **secure access controls (IAM + bucket policy)**, and **CORS-aware configuration**. Built with a simple multi-page frontend (Home / About / Contact) and deployed using AWS-native capabilities.
 
 ---
 
-## Portfolio Summary
+## Live Demo
 
-Deployed an enterprise-style static website on **Amazon S3** with **IAM least-privilege access**, **CORS configuration**, and **CloudFront CDN delivery**. Implemented a **custom-domain DNS flow with Route 53**, static website hosting, secure permissions, and a cost-aware architecture guided by **AWS Well-Architected** principles.
+**Website URL:** `https://kk-devops-s3-staticwebsite.s3.eu-west-2.amazonaws.com/index.html`
 
----
-
-## Why This Project Matters
-
-- Demonstrates practical cloud fundamentals using fully managed AWS services.
-- Shows how static websites can be **fast, scalable, reliable, and inexpensive**.
-- Highlights recruiter-relevant AWS topics: **IAM**, **bucket policies**, **CDN (CloudFront)**, **DNS (Route 53)**, and secure web delivery.
+> ⚠️ **Note:** This is a temporary deployment link for demonstration purposes. The website may be decommissioned after the project showcase period.
 
 ---
 
-## Architecture
+## 📸 Project Screenshots (add yours later)
 
-**Primary request flow:**
+Replace the placeholders below with real screenshots (recommended: website pages + S3 settings).
 
-`User → Route 53 → CloudFront → S3 Bucket`
+### Homepage
+<img width="1887" height="943" alt="image" src="https://github.com/user-attachments/assets/f72029c2-4819-497a-b43e-64251be749f0" />
 
-**Optional redirect flow (recommended for custom domains):**
+*Screenshot: Homepage hero section*
 
-`www.<domain> (S3 redirect bucket) → redirect → <domain> (root)`
+### Features Section
 
----
+<img width="1886" height="955" alt="image" src="https://github.com/user-attachments/assets/e10f5db5-be1c-4578-9dfe-8e99059f5ffd" />
 
-## Features
+*Screenshot: Features section*
 
-- Static website hosting from **Amazon S3**
-- **CloudFront** in front of S3 for **HTTPS** and edge caching
-- **Route 53 alias records** for custom-domain routing
-- **IAM least-privilege** access for deployment and administration
-- **Bucket policy** for controlled public access (only where required)
-- **CORS configuration** for frontend asset/API scenarios
-- Custom **index** and **error** documents
-- Cost-aware setup suitable for portfolio/demo workloads
+### About Page
 
----
+<img width="1872" height="965" alt="image" src="https://github.com/user-attachments/assets/14c9be42-1cd1-44fb-98a2-e98e4b47069a" />
 
-## AWS Concepts Demonstrated
+*Screenshot: About page*
 
-### 1) Amazon S3 static website hosting
-- Upload `index.html` (and optionally `404.html`)
-- Enable **Static website hosting** on the bucket
-- Configure:
-  - Index document (e.g., `index.html`)
-  - Error document (e.g., `404.html`)
+### Contact Page
 
-### 2) CloudFront for HTTPS + performance
-S3 **website endpoints do not support HTTPS directly**, so CloudFront is used to:
-- Serve the site over HTTPS
-- Cache content at edge locations for lower latency
-- Improve global performance and user experience
+<img width="1883" height="967" alt="image" src="https://github.com/user-attachments/assets/e347e06e-1afb-49a7-b268-4c941237b9de" />
 
-### 3) Route 53 for custom domains (DNS)
-Route 53 provides DNS routing using:
-- **A / AAAA alias records** pointing your domain to CloudFront
-- Optional `www` routing strategy (redirect or alternate record)
+*Screenshot: Contact page (form validation/UX)*
 
-### 4) IAM least-privilege access
-Access is scoped to the minimum required actions for:
-- Uploading website assets
-- Managing cache invalidations (optional)
-- Limiting administrative permissions to reduce risk
+### AWS S3 Console Configuration
 
-### 5) Bucket policy design (controlled public access)
-Depending on the setup:
-- Public access may be allowed only for the **specific objects** intended for web hosting, or
-- Access may be restricted so CloudFront is the only approved reader (recommended in production-style setups)
+*Screenshot: S3 static website hosting + permissions configuration*
+<img width="1907" height="928" alt="image" src="https://github.com/user-attachments/assets/9ff0c422-15db-4f63-9012-0cdb1d1b8f34" />
+<img width="1860" height="665" alt="image" src="https://github.com/user-attachments/assets/a0530237-4def-43e1-b393-a00b3d094fc5" />
 
-### 6) CORS configuration (browser compatibility)
-CORS is included for situations where the frontend:
-- Loads assets cross-origin, or
-- Calls APIs and requires browser-approved cross-origin behavior
+> Tip: Create a `docs/screenshots/` folder and drop your images there, then update filenames if needed.
 
 ---
 
-## Getting Started (High-Level)
+## 📋 Project Overview
 
-1. Build or collect your static site files:
-   - `index.html`
-   - `404.html` (optional)
-   - CSS/JS/assets
+This project showcases a production-style approach to hosting a static website using **Amazon S3**. It focuses on:
+- clean static-site deployment
+- secure, controlled public access
+- CORS considerations for browser-based apps
+- cost-aware design suitable for demo/portfolio workloads
 
-2. Create and configure an S3 bucket:
-   - Enable static website hosting
-   - Set index/error documents
-   - Apply the appropriate public access + bucket policy strategy
-
-3. Create a CloudFront distribution:
-   - Set origin to your S3 (website endpoint or S3 origin depending on your design)
-   - Enable HTTPS
-   - Configure caching behaviors
-   - (Optional) Add custom domain + ACM certificate
-
-4. Configure Route 53:
-   - Create hosted zone (if needed)
-   - Add alias record(s) to CloudFront
-   - Add `www` redirect strategy if desired
-
-5. Validate:
-   - Site loads via CloudFront domain
-   - Site loads via custom domain
-   - Error routing behaves as expected
-   - CORS headers behave as intended for your use case
+**Site Pages Included**
+- `index.html` (Home)
+- `about.html` (About)
+- `contact.html` (Contact)
 
 ---
 
-## Notes on Cost Awareness
+## 🏗️ Architecture (Current)
 
-This setup is designed to be budget-friendly for demos and portfolios:
-- S3 storage costs scale with content size
-- CloudFront costs scale with bandwidth/requests
-- Route 53 hosted zone + queries are typically low-cost for small sites
+```
+┌──────────────────────────────┐
+│          User Browser         │
+└──────────────┬───────────────┘
+               │  HTTP
+               ▼
+┌──────────────────────────────┐
+│     Amazon S3 Static Website  │
+│  - index.html                 │
+│  - about.html                 │
+│  - contact.html               │
+│  - css/style.css              │
+│  - js/script.js               │
+│                               │
+│  Security / Config:           │
+│  - Bucket Policy (public read │
+│    for website content)       │
+│  - IAM permissions            │
+│  - CORS rules (as needed)     │
+└──────────────────────────────┘
+```
 
 ---
 
-## License
+## ✨ Features Implemented
 
-Add a license if you plan to make this repository public (e.g., MIT).
+### Frontend
+- ✅ Responsive layout (HTML/CSS)
+- ✅ Multi-page navigation (Home / About / Contact)
+- ✅ Styling + animations (CSS)
+- ✅ Interactive behavior (JavaScript)
+
+### AWS / Cloud
+- ✅ S3 bucket static website hosting enabled
+- ✅ Bucket policy for controlled public read access (for website assets)
+- ✅ IAM permissions aligned with least-privilege principles (for admin/deploy workflows)
+- ✅ CORS-ready configuration for browser scenarios
 
 ---
+
+## 🛠️ Tech Stack
+
+| Category | Technologies |
+|---------|--------------|
+| Frontend | HTML5, CSS3, JavaScript |
+| AWS | Amazon S3, IAM |
+| Tooling | Git, GitHub, VS Code |
+
+---
+
+## 📁 Repository Structure (matches this repo)
+
+```
+AWS-s3-static-website/
+├── index.html
+├── about.html
+├── contact.html
+├── css/
+│   └── style.css
+├── js/
+│   └── script.js
+└── README.md
+```
+
+---
+
+## 🚀 Deployment (High-Level Steps)
+
+### 1) Create an S3 bucket
+- Choose a region (this demo uses `eu-west-2`)
+- Bucket name must be globally unique (example used here): `kk-devops-s3-staticwebsite`
+
+### 2) Enable Static Website Hosting
+Configure:
+- **Index document:** `index.html`
+- **Error document:** `index.html` or `404.html` (based on your routing preference)
+
+### 3) Configure Permissions (Bucket Policy)
+Allow public read access **only** for website files (typical for S3-website endpoint demos).
+
+Example (update bucket name):
+```json
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "PublicReadGetObject",
+      "Effect": "Allow",
+      "Principal": "*",
+      "Action": "s3:GetObject",
+      "Resource": "arn:aws:s3:::kk-devops-s3-staticwebsite/*"
+    }
+  ]
+}
+```
+
+### 4) Upload the site
+Using AWS CLI:
+```bash
+aws s3 sync . s3://kk-devops-s3-staticwebsite/ --region eu-west-2
+```
+
+### 5) Validate
+Open:
+`https://kk-devops-s3-staticwebsite.s3.eu-west-2.amazonaws.com/index.html`
+
+---
+
+## 🔒 Security Notes (What this demonstrates)
+
+- Least-privilege mindset for IAM permissions
+- Bucket policy used to allow only the required access level for static hosting
+- No secrets or sensitive data stored in the bucket
+- CORS can be tightened to trusted origins depending on your use case
+
+---
+
+## 💰 Cost Awareness
+
+This project is designed to stay within (or close to) AWS Free Tier usage for portfolio workloads:
+- minimal storage
+- low request volume
+- limited bandwidth usage
+
+> Recommendation: set up a billing alarm (e.g., $5) to avoid unexpected charges.
+
+---
+
+## 🔄 Future Enhancements (Roadmap)
+
+- [ ] Add **CloudFront** for HTTPS + edge caching
+- [ ] Add a **custom domain** via Route 53 (and ACM certificate for HTTPS)
+- [ ] Add **CI/CD** using GitHub Actions (`aws s3 sync` on push)
+- [ ] Add backend for contact form using **Lambda + API Gateway**
+- [ ] Add monitoring and protection (CloudWatch, WAF) for production-style hardening
+
+---
+
+## 📄 License
+
+
+
+---
+
+## 👤 Author
+
+**@Kirankumarvel**
